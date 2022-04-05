@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {Grid, Item} from '@mui/material/';
 
 const PageNotFound = () => {
   const navigate = useNavigate()
@@ -13,8 +14,10 @@ const PageNotFound = () => {
           alignContent: "center",
         }}
       >
-        <h1>404 error : Page Not Found</h1>
-        <IconButton
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+  <Grid item xs={6}>
+    <Item>    <h1>404 error : Page Not Found</h1> 
+    <IconButton
           sx={{
             ml: 2,
             background: "white",
@@ -24,6 +27,12 @@ const PageNotFound = () => {
         > Back
           <ArrowBackIcon />
         </IconButton>
+    </Item>
+  </Grid>
+
+</Grid>
+
+
       </div>
     );
   };
