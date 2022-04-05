@@ -1,4 +1,4 @@
-import { Card } from "@mui/material";
+import { Card, Grid } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import Header from "./Header";
 
@@ -6,9 +6,17 @@ const Image = () => {
   const image = useLocation();
   return (
     <Header>
-      <Card style={{marginLeft:200}}>
+      <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      >
+      <Card  height={90}>
         <img src={image.state.urls.regular} alt="aaa" />
       </Card>
+      </Grid>
+
     </Header>
   );
 };

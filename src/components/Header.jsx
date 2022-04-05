@@ -1,75 +1,86 @@
-import { Home, Search } from "@mui/icons-material";
-import { IconButton, TextField } from "@mui/material";
+import React from 'react'
+
+import { Grid, IconButton, TextField, Typography } from "@mui/material";
 import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "../context/ImageContext";
+import { Search, Home } from '@mui/icons-material';
 
-const Header = (props) => {
-  let { searchImage } = useContext(ImageContext);
-  const inputRef = useRef();
-  const navigate = useNavigate();
-  const searchHandler = () => {
-    if (inputRef.current.value.trim() === "") {
-      return;
-    } else {
-      searchImage(inputRef.current.value).then(() => {
-        navigate(`/query=${inputRef.current.value}&page=1`);
-      });
+function Header(props) {
+    const { searchImage } = useContext(ImageContext)
+    const inputRef = useRef();
+    const navigate = useNavigate();
+    const searchHandler = () => {
+        if(inputRef.current.value.trim()!=="") {
+            searchImage(inputRef.current.value).then(()=>{
+                navigate(`/query=${inputRef.current.value}&page=1`)
+
+            });
+        }
+        return
     }
-  };
   return (
-    <>
-      <div
-        style={{
-          height: 50,
-          background: "blue",
-          alignItems: "center",
-          display: "flex",
+      <>
+    <div style={{
+        height:60,
+        background:'#b896fa',
+        alignItems: 'center',
+        display : 'flex'
+    }}>
+         <IconButton
+         
+        onClick={()=> {
+            navigate('/')
         }}
-      >
-        <TextField
-          onKeyDown={(e) => {
-            if (e.key === "Eneter") {
-              searchHandler();
-            }
-          }}
-          inputRef={inputRef}
-          variant="outlined"
-          size="small"
-          sx={{ background: "white", marginLeft: 2 }}
-          placeholder="Search"
-        />
-        <IconButton
-          sx={{
-            ml: 2,
+        sx={{
+            ml:5,
             background: "white",
-            ":hover": { background: "lightblue" },
-          }}
-          onClick={() => {
-            searchHandler();
-          }}
-        >
-          <Search />
-        </IconButton>
-        <h3 style={{ marginLeft: 100, color: "whitesmoke" }}>Images</h3>
-        <IconButton
-          onClick={() => {
-            navigate("/");
-          }}
-          sx={{
-            mr: 5,
-            background: "white",
-            ":hover": { background: "lightblue" },
+            ":hover": { background: "lightblue"},
             position: "absolute",
-            right: 0,
-          }}
+            left: 0
+        }}
         >
-          <Home />
-        </IconButton>
-      </div>
-      <div style={{ margin: 5 }}>{props.children}</div>
-    </>
-  );
-};
+            <Home />
 
-export default Header;
+        </IconButton>
+        {/*  */}
+
+        <Typography  fontWeight={600} variant="h6"style={{ marginLeft: 100, color: "whitesmoke"}}>Unsplash Images </Typography>
+
+        <Grid
+               sx={{
+                mr:5,
+                position: "absolute",
+                right: 0
+            }}
+         >  
+       <TextField 
+        onKeyDown={(e)=> {
+            if(e.key=== "Enter") searchHandler();
+        }}
+        inputRef={inputRef}
+        variant="outlined"
+        size="small"
+        sx={{ background: "white", marginLeft : 2}}
+        placeholder='Search'
+        />
+        <IconButton 
+        sx={{
+            ml:2,
+            background: "white",
+            ":hover": { background: "lightblue"},
+        }}
+        onClick={()=> {
+            searchHandler()
+        }}
+        >
+            <Search />
+        </IconButton>
+        </Grid>
+    </div>
+         <div style={{ margin: 5 }}>{props.children}</div>
+    </>
+  )
+}
+
+export default Header
