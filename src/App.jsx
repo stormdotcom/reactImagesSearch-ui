@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom';
 import Progress from './components/Progress';
 import { ImageContext } from './context/ImageContext';
 import Router from './routes/routes';
-
+import "./index.css"
 function App (){
     const params = useParams();
-    const cliend_id = "ePnxayknzZ0SQcm2dDdy7_D67oW8sngnJ9oME91YHU0";
+    const client_id = "ePnxayknzZ0SQcm2dDdy7_D67oW8sngnJ9oME91YHU0";
     const [loading, setLoading] = useState(false)
     const [imageList, setImageList ] = useState({
         total_pages: 0,
@@ -41,3 +41,4 @@ function App (){
         </ImageContext.Provider>
     )
 }
+export default App

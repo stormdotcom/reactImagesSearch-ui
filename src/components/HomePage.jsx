@@ -1,16 +1,13 @@
 import { useContext, useRef } from 'react';
 import {Search } from '@mui/icons-material';
-import {Grid, IconButton, TextField, Typography} from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { Grid , IconButton, TextField, Typography} from '@mui/material';
 import { ImageContext } from '../context/ImageContext';
-import { makeStyles } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        background: "rgb(239,200,255)",
-        background: 'linear-gradient(90deg, rgba(239,200,255,1) 0%, rgba(243,151,255,1) 40%, rgba(184,150,250,1) 100%)',
-        width: '100vw',
-        height: '100vh',
+        
     },
 }))
 
@@ -21,40 +18,46 @@ const HomePage = () => {
     const { searchImage } =useContext(ImageContext);
 
     const searchHandler = () => {
-        if(inputRef.current.value.trim()!=="") {
+        if(inputRef.current.value.trim()==="") {
+            return
+        }
+        else {
             searchImage(inputRef.current.value).then(()=>{
                 navigate(`/query=${inputRef.current.value}&page=1`)
 
             });
         }
-        return
     }
     return (
+        <div 
+        className="homePageGrid" 
+> 
         <Grid 
-        spacing={0}
         container
-        display="table"
-        alignContent="center"
+        direction="column"
         justifyContent="center"
-        classes={classes.root}
-        >
-        <Grid item xs={12} paddingLeft={70} marginTop={20}>
-                <Typography color="white" variant="h2" > Search Images from unsplash</Typography>
+        alignItems="center"
+               >
+            
+        <Grid item xs={12}  marginTop={10}>
+                <Typography  color="white" sx={{fontWeight: 600}} variant="h2" > Search Images from Unsplash</Typography>
             </Grid>
-        <Grid item xs={12} paddingLeft={70} marginTop={20}>
+        <Grid item xs={12}    marginTop={10}>
             <TextField 
             onKeyDown={((e)=>{
                 if(e.key==="Enter") searchHandler();
             })}
             inputRef={inputRef}
             variant="outlined"
-            label="search"
+            label="Search"
             sx={{ width: 400}}
             >
 
             </TextField>
             <IconButton
-          sx={{ background: "lightblue", height: 50, width: 50, ml: 2 }}
+          sx={{ background: "#8248f0", height: 50, width: 50, ml: 2, ":hover": {
+            background: "#5724b8"
+          } }}
           onClick={() => {
             searchHandler();
           }}
@@ -63,6 +66,7 @@ const HomePage = () => {
         </IconButton>
         </Grid>
         </Grid>
+        </div>
     ) 
 } 
 export default HomePage
