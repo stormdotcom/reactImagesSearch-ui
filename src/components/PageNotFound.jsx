@@ -1,7 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { IconButton } from "@mui/material";
+import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {Grid, Item} from '@mui/material/';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const PageNotFound = () => {
   const navigate = useNavigate()
@@ -14,19 +24,24 @@ const PageNotFound = () => {
           alignContent: "center",
         }}
       >
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid sx={{
+          height: "500px",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+        }}  container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
   <Grid item xs={6}>
     <Item>    <h1>404 error : Page Not Found</h1> 
-    <IconButton
+    <Button 
+    variant="contained"
+    endIcon={<ArrowBackIcon />}
           sx={{
             ml: 2,
-            background: "white",
-            ":hover": { background: "lightblue" },
+            ":hover": { background: "darktblue" },
           }}
           onClick={(()=> navigate("/"))}
         > Back
-          <ArrowBackIcon />
-        </IconButton>
+        </Button>
     </Item>
   </Grid>
 
