@@ -1,13 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-import { Grid, TextField, Toolbar, Typography, IconButton,AppBar, Box } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+import {  TextField, Toolbar, Typography, IconButton,AppBar, Box } from "@mui/material";
 import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "../context/ImageContext";
