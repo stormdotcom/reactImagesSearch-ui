@@ -22,13 +22,13 @@ function Images() {
    <Header>
      {imageList.results.length > 0 ? (
        <>
-       <Grid container spacing={1} justifyContent='center'>
-          <Grid container spacing={1} justifyContent='center'>
+       <Grid container spacing={1} justifyContent='center' >
+          <Grid container spacing={1} justifyContent='center' >
             {imageList.results.map((image)=> {
               return <Grid 
                       item
                       key={image.id}
-                      xs={12}
+                     
                       sm={6}
                       md={12 / 5}
                       lg={12 / 5}

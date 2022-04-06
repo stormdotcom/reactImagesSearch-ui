@@ -40,7 +40,7 @@ const HomePage = () => {
                >
             
         <Grid item xs={12}  marginTop={10}>
-                <Typography  color="white" sx={{fontWeight: 600}} variant="h2" > Search Images from Unsplash</Typography>
+                <Typography  color="white"  sx={{ typography: { sm: 'h6', xs: 'body1', md: 'h2' } }} variant="h2" > Search Images from Unsplash</Typography>
             </Grid>
         <Grid item xs={12}    marginTop={10}>
             <TextField 
@@ -50,7 +50,7 @@ const HomePage = () => {
             inputRef={inputRef}
             variant="outlined"
             label="Search"
-            sx={{ width: 400}}
+            sx={{ minWidth: 120}}
             >
 
             </TextField>
