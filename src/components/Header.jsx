@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { Grid, IconButton, TextField, Typography } from "@mui/material";
+import {  TextField, Toolbar, Typography, IconButton,AppBar, Box } from "@mui/material";
 import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "../context/ImageContext";
 import { Search, Home } from '@mui/icons-material';
-
 function Header(props) {
     const { searchImage } = useContext(ImageContext)
     const inputRef = useRef();
@@ -20,49 +19,41 @@ function Header(props) {
         return
     }
   return (
-      <>
-    <div style={{
-        height:60,
-        background:'#b896fa',
-        alignItems: 'center',
-        display : 'flex'
-    }}>
-         <IconButton
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static"
+        mb={2}
+          style={{
+            background:'#b896fa',
+        }}>
+        <Toolbar>
+        <IconButton
          
-        onClick={()=> {
-            navigate('/')
-        }}
-        sx={{
-            ml:5,
-            background: "white",
-            ":hover": { background: "lightblue"},
-            position: "absolute",
-            left: 0
-        }}
-        >
-            <Home />
-
-        </IconButton>
-        {/*  */}
-
-        <Typography  fontWeight={600} variant="h6"style={{ marginLeft: 100, color: "whitesmoke"}}>Unsplash Images </Typography>
-
-        <Grid
-               sx={{
-                mr:5,
-                position: "absolute",
-                right: 0
-            }}
-         >  
-       <TextField 
+         onClick={()=> {
+             navigate('/')
+         }}
+         sx={{
+             mx:2,
+             background: "white",
+             ":hover": { background: "lightblue"},
+         }}
+         >
+             <Home />
+ 
+         </IconButton>
+          <Typography variant="h6"style={{ fontWeight:600, marginLeft: "auto", color: "whitesmoke"}} sx={{ typography: { sm: 'h6', xs: 'body2', md: 'h6' }, flexGrow: 1 }}>Unsplash Images </Typography>
+          <div style={{display:"flex"}}> 
+         <TextField 
         onKeyDown={(e)=> {
             if(e.key=== "Enter") searchHandler();
         }}
+        sm={10}
         inputRef={inputRef}
         variant="outlined"
         size="small"
-        sx={{ background: "white", marginLeft : 2}}
+        width='30%'
+        sx={{ background: "white",}}
         placeholder='Search'
+        
         />
         <IconButton 
         sx={{
@@ -76,11 +67,16 @@ function Header(props) {
         >
             <Search />
         </IconButton>
-        </Grid>
-    </div>
-         <div style={{ margin: 5 }}>{props.children}</div>
-    </>
-  )
+              
+            </div>
+          
+        </Toolbar>
+      </AppBar>
+      <div style={{ margin: 5 }}>{props.children}</div>
+    </Box>
+
+)
+
 }
 
 export default Header
